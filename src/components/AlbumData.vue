@@ -21,7 +21,6 @@ export default defineComponent({
     },
     setup () {
       const year = (date: string) => {
-        console.log(date)
         return date.slice(0, 4)
       }
       return { year }

@@ -33,6 +33,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, computed } from 'vue'
 import type { ItunesTypes } from '@/types/ItunesTypes'
+import { useAlbumStore } from '@/stores/album'
 import AlbumData from '@/components/AlbumData.vue'
 type allCategory = string[];
 
@@ -46,12 +47,14 @@ export default defineComponent({
     const albums = reactive<{ data: ItunesTypes }>({ data: {} });
     const allCategory = ref<allCategory>(["發行日大到小", "年份"]);
     const category = ref<string>("");
+    const albumStore = useAlbumStore();
 
     const searchItunes = async (search: string) => {
       try {
         const value = await fetch(`https://itunes.apple.com/search?term=${search}&entity=album`);
         const valueToJSON = await value.json();
         albums.data = valueToJSON;
+        albumStore.setAlbumsData(valueToJSON);
       } catch (err) {
         console.log('catch', err);
       };
