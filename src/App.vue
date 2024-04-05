@@ -10,7 +10,7 @@
         <button type="button" class="btn btn-primary" @click="searchItunes(searchText)">查詢</button>
       </div>
       <div class="album-placeholder">
-        <div>歌手專輯(輸入歌手後呈現 ex.五月天)</div>
+        <div>歌手專輯(輸入歌手後呈現 ex.周杰倫)</div>
       </div>
 
       <div v-if="!!albums.data.results">
